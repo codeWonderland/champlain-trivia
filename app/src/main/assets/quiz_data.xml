@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<app>
+    <quiz name="History" img="">
+        <question type="text">
+            <prompt>When was Champlain College founded?</prompt>
+            <answers>
+                <answer correct="false">1887</answer>
+                <answer correct="false">1787</answer>
+                <answer correct="true">1878</answer>
+                <answer correct="false"> 1788</answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>Champlain was originally called Burlington Business College</prompt>
+            <answers>
+                <answer correct="true">true</answer>
+                <answer correct="false">false</answer>
+            </answers>
+        </question>
+    </quiz>
+    <quiz name="Faculty" img="">
+        <question type="img">
+            <prompt>Who teaches Mobile Dev?</prompt>
+            <answers>
+                <answer correct="false">R.drawable.kopec</answer>
+            </answers>
+        </question>
+    </quiz>
+    <quiz name="Buildings" img="">
+
+    </quiz>
+</app>
