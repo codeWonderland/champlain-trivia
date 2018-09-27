@@ -1,7 +1,6 @@
 package us.cyosp.codewonderland.champlaintrivia.model
 
-class Quiz(val mName: String,
-           val mImg: String) {
+class Quiz(val mName: String) {
 
     private var mScore = 0
     private var mCurrentQuestion = 0
@@ -12,7 +11,15 @@ class Quiz(val mName: String,
     }
 
     fun checkQuestion(answer: String) : Boolean {
-        return mQuestions[mCurrentQuestion].checkAnswer(answer)
+        val result = mQuestions[mCurrentQuestion].checkAnswer(answer)
+
+        if (result) mScore++
+
+        return result
+    }
+
+    fun checkScore() : Int {
+        return mScore
     }
 
     private fun getQuestion() : Question {

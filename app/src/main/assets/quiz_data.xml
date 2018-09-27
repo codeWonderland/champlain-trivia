@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <app>
-    <quiz name="History" img="">
+    <quiz name="History">
         <question type="text">
             <prompt>When was Champlain College founded?</prompt>
             <answers>
@@ -18,7 +18,7 @@
             </answers>
         </question>
     </quiz>
-    <quiz name="Faculty" img="">
+    <quiz name="Faculty">
         <question type="img">
             <prompt>Who teaches Mobile Dev?</prompt>
             <answers>
@@ -26,7 +26,7 @@
             </answers>
         </question>
     </quiz>
-    <quiz name="Buildings" img="">
+    <quiz name="Buildings">
 
     </quiz>
 </app>

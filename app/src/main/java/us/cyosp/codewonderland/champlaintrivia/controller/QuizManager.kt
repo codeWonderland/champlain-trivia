@@ -58,8 +58,7 @@ class QuizManager(private val mDataStream: InputStream,
 
                         }
                         val quizName = parser.getAttributeValue(null, "name")
-                        val quizImg = parser.getAttributeValue(null, "img")
-                        quiz = Quiz(quizName, quizImg)
+                        quiz = Quiz(quizName)
 
                     }
                     "question" -> {
