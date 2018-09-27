@@ -10,7 +10,7 @@ import java.io.IOException
 import java.io.InputStream
 
 class QuizManager(private val mDataStream: InputStream,
-                  private val mSendQuizzes: (Map<String, String>) -> Unit) {
+                  private val mSendQuizzes: (List<String>) -> Unit) {
     private val mQuizzes = mutableMapOf<String, Quiz>()
 
     private fun parseXML() {
@@ -92,8 +92,6 @@ class QuizManager(private val mDataStream: InputStream,
     init {
         parseXML()
 
-        mSendQuizzes(mQuizzes.mapValues {
-            it.value.mImg
-        })
+        this.mSendQuizzes(mQuizzes.keys.toList())
     }
 }

@@ -15,11 +15,11 @@ class QuizSelection : AppCompatActivity() {
 
         val dataStream = assets.open("quiz_data.xml")
         this.mQuizManager = QuizManager(dataStream) {
-            quizzes: Map<String, String> -> displayQuizzes(quizzes)
+            quizzes: List<String> -> displayQuizzes(quizzes)
         }
     }
 
-    private fun displayQuizzes(quizzes: Map<String, String>) {
+    private fun displayQuizzes(quizzes: List<String>) {
         return Unit
     }
 }
