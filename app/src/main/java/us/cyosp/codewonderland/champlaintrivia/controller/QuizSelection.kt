@@ -1,23 +1,32 @@
 package us.cyosp.codewonderland.champlaintrivia.controller
 
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
 import android.util.Log
 import org.xmlpull.v1.XmlPullParser
-import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
+import us.cyosp.codewonderland.champlaintrivia.R
 import us.cyosp.codewonderland.champlaintrivia.model.Question
 import us.cyosp.codewonderland.champlaintrivia.model.Quiz
 import java.io.IOException
-import java.io.InputStream
 
-class QuizManager(private val mDataStream: InputStream,
-                  private val mSendQuizzes: (List<String>) -> Unit) {
-    private val mQuizzes = mutableMapOf<String, Quiz>()
+class QuizSelection : AppCompatActivity() {
+
+    private val mQuizzes = ArrayList<Quiz>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.quiz_selection)
+
+        parseXML()
+    }
 
     private fun parseXML() {
         /* Based off of xml parsing tutorial.
 
         https://antonioleiva.com/functional-programming-android-kotlin-lambdas/
          */
+        val dataStream = assets.open("quiz_data.xml")
         val parserFactory: XmlPullParserFactory?
 
         try {
@@ -25,12 +34,12 @@ class QuizManager(private val mDataStream: InputStream,
             val parser = parserFactory!!.newPullParser()
 
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false)
-            parser.setInput(mDataStream, null)
+            parser.setInput(dataStream, null)
 
             processParsing(parser)
 
         } catch (e: IOException) {
-            Log.d("QuizManager", e.message)
+            Log.d("QuizSelection", e.message)
         }
 
     }
@@ -53,7 +62,7 @@ class QuizManager(private val mDataStream: InputStream,
                 when (eltName) {
                     "quiz" -> {
                         if (quiz != null) {
-                            this.mQuizzes[quiz.mName] = quiz
+                            this.mQuizzes.add(quiz)
                             question = null
 
                         }
@@ -86,11 +95,15 @@ class QuizManager(private val mDataStream: InputStream,
 
             eventType = parser.next()
         }
+
+        if (quiz != null) {
+            this.mQuizzes.add(quiz)
+        }
+
+        displayQuizzes()
     }
 
-    init {
-        parseXML()
-
-        this.mSendQuizzes(mQuizzes.keys.toList())
+    private fun displayQuizzes() {
+        return Unit
     }
 }

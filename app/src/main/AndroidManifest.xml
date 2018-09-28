@@ -11,7 +11,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".view.QuizSelection">
+            android:name=".controller.QuizSelection">
 
             <intent-filter>
 

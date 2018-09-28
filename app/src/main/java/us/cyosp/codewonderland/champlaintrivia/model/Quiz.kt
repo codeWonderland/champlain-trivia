@@ -10,12 +10,17 @@ class Quiz(val mName: String) {
         mQuestions.add(question)
     }
 
-    fun checkQuestion(answer: String) : Boolean {
+    fun submitAnswer(answer: String) {
         val result = mQuestions[mCurrentQuestion].checkAnswer(answer)
 
         if (result) mScore++
+    }
 
-        return result
+    fun nextQuestion(answer: String) : Question {
+        this.mCurrentQuestion =
+                (this.mCurrentQuestion + 1) % this.mQuestions.size
+
+        return getQuestion()
     }
 
     fun checkScore() : Int {
@@ -24,12 +29,5 @@ class Quiz(val mName: String) {
 
     private fun getQuestion() : Question {
         return this.mQuestions[this.mCurrentQuestion]
-    }
-
-    fun nextQuestion() : Question {
-        this.mCurrentQuestion =
-                (this.mCurrentQuestion + 1) % this.mQuestions.size
-
-        return getQuestion()
     }
 }
