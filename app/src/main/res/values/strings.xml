@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Champlain Trivia</string>
+    <string name="quiz_selection_prompt">choose a quiz, any quiz</string>
+    <string name="history">History</string>
+    <string name="buildings">Buildings</string>
+    <string name="faculty">Faculty</string>
+    <string name="next_button">Next ❯</string>
+    <string name="submit_button">Submit ✓</string>
+    <string name="tmp_answer">answer</string>
+    <string name="tmp_question">question</string>
 </resources>

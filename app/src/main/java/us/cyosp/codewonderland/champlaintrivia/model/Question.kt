@@ -11,6 +11,10 @@ class Question(val mType: String) {
         this.mPrompt = prompt
     }
 
+    fun getPrompt() : String {
+        return mPrompt
+    }
+
     fun addAnswer(value: String, correct: Boolean) {
         mAnswers.add(Answer(value, correct))
     }
@@ -23,13 +27,12 @@ class Question(val mType: String) {
     }
 
     fun checkAnswer(value: String): Boolean {
-        return mAnswers.fold(false) {
-            acc, cur ->
-            return if (cur.mValue == value) {
-                cur.mCorrect
-            } else {
-                acc
+        for (answer in mAnswers) {
+            if (answer.mValue == value) {
+                return answer.mCorrect
             }
         }
+
+        return false
     }
 }

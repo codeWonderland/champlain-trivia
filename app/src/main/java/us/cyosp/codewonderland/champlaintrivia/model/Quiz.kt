@@ -27,7 +27,7 @@ class Quiz(val mName: String) {
         return mScore
     }
 
-    private fun getQuestion() : Question {
+    fun getQuestion() : Question {
         return this.mQuestions[this.mCurrentQuestion]
     }
 }

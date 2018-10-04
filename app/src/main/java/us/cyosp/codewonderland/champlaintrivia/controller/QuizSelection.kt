@@ -3,6 +3,7 @@ package us.cyosp.codewonderland.champlaintrivia.controller
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import us.cyosp.codewonderland.champlaintrivia.R
@@ -10,9 +11,13 @@ import us.cyosp.codewonderland.champlaintrivia.model.Question
 import us.cyosp.codewonderland.champlaintrivia.model.Quiz
 import java.io.IOException
 
+
+
 class QuizSelection : AppCompatActivity() {
 
-    private val mQuizzes = ArrayList<Quiz>()
+    object Data {
+        val Quizzes = ArrayList<Quiz>()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +67,7 @@ class QuizSelection : AppCompatActivity() {
                 when (eltName) {
                     "quiz" -> {
                         if (quiz != null) {
-                            this.mQuizzes.add(quiz)
+                            QuizSelection.Data.Quizzes.add(quiz)
                             question = null
 
                         }
@@ -97,13 +102,30 @@ class QuizSelection : AppCompatActivity() {
         }
 
         if (quiz != null) {
-            this.mQuizzes.add(quiz)
+            QuizSelection.Data.Quizzes.add(quiz)
         }
 
         displayQuizzes()
     }
 
     private fun displayQuizzes() {
-        return Unit
+        val quiz0: Button = findViewById(R.id.quiz0)
+        val quiz1: Button = findViewById(R.id.quiz1)
+        val quiz2: Button = findViewById(R.id.quiz2)
+
+        quiz0.text = QuizSelection.Data.Quizzes[0].mName
+        quiz1.text = QuizSelection.Data.Quizzes[1].mName
+        quiz2.text = QuizSelection.Data.Quizzes[2].mName
+
+        attachQuiz(quiz0, 0)
+        attachQuiz(quiz1, 1)
+        attachQuiz(quiz2, 2)
+    }
+
+    private fun attachQuiz(button: Button, quizIndex: Int) {
+        button.setOnClickListener {
+            val intent = QuizActivity.Intent.newIntent(this, quizIndex)
+            startActivity(intent)
+        }
     }
 }
