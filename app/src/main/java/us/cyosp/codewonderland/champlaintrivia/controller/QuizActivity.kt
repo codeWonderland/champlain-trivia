@@ -56,11 +56,6 @@ class QuizActivity : AppCompatActivity() {
 
         setQuestion()
 
-        // add event listeners to answer buttons
-        for (answer in mAnswers) {
-            setAnswerListener(answer)
-        }
-
         // add functionality to next button
         setNextListener()
     }
@@ -85,11 +80,15 @@ class QuizActivity : AppCompatActivity() {
             }
         }
 
+        // add event listeners to answer buttons
+        for (answer in mAnswers) {
+            setAnswerListener(answer)
+        }
+
         // determine a random wrong answer to remove for hint
         var wrongAnswer: Button? = null
 
         for (answer in mAnswers.shuffled()) {
-            answer.visibility = View.VISIBLE
 
             if (!mQuestion!!.checkAnswer(answer.text.toString())) {
                 wrongAnswer = answer
@@ -139,6 +138,11 @@ class QuizActivity : AppCompatActivity() {
                 Log.d("QuizActivity", "in conditional")
             } else {
                 mQuestion = mQuiz!!.nextQuestion()
+
+                for (answer in mAnswers) {
+                    answer.setBackgroundColor(Color.parseColor("#236192"))
+                    answer.visibility = View.VISIBLE
+                }
                 setQuestion()
             }
         }

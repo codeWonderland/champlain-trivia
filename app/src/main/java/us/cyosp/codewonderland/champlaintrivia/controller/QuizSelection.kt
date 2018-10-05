@@ -67,6 +67,10 @@ class QuizSelection : AppCompatActivity() {
                 when (eltName) {
                     "quiz" -> {
                         if (quiz != null) {
+                            if (question != null) {
+                                quiz.addQuestion(question)
+                            }
+
                             QuizSelection.Data.Quizzes.add(quiz)
                             question = null
 
@@ -101,9 +105,9 @@ class QuizSelection : AppCompatActivity() {
             eventType = parser.next()
         }
 
-        if (quiz != null) {
-            QuizSelection.Data.Quizzes.add(quiz)
-        }
+        quiz!!.addQuestion(question!!)
+        QuizSelection.Data.Quizzes.add(quiz)
+
 
         displayQuizzes()
     }

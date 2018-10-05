@@ -29,6 +29,14 @@
         </question>
     </quiz>
     <quiz name="Buildings">
-
+        <question type="text">
+            <prompt>Where is admissions?</prompt>
+            <answers>
+                <answer correct="false">West Hall</answer>
+                <answer correct="false">Lakeside</answer>
+                <answer correct="true">Perry Hall</answer>
+                <answer correct="false">CCM</answer>
+            </answers>
+        </question>
     </quiz>
 </app>
