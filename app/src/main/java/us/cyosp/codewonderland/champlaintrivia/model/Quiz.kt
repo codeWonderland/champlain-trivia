@@ -10,17 +10,23 @@ class Quiz(val mName: String) {
         mQuestions.add(question)
     }
 
-    fun submitAnswer(answer: String) {
+    fun submitAnswer(answer: String) : Boolean {
         val result = mQuestions[mCurrentQuestion].checkAnswer(answer)
 
         if (result) mScore++
+
+        return result
     }
 
-    fun nextQuestion(answer: String) : Question {
+    fun nextQuestion() : Question {
         this.mCurrentQuestion =
                 (this.mCurrentQuestion + 1) % this.mQuestions.size
 
         return getQuestion()
+    }
+
+    fun onLastQuestion() : Boolean {
+        return mCurrentQuestion == mQuestions.size - 1
     }
 
     fun checkScore() : Int {

@@ -5,6 +5,8 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -19,6 +21,7 @@ class QuizActivity : AppCompatActivity() {
     private var mPrompt: TextView? = null
     private var mAnswers = ArrayList<Button>()
     private var mNext: Button? = null
+    private var mHint: Button? = null
     private var mQuestion: Question? = null
 
     object Intent {
@@ -36,13 +39,16 @@ class QuizActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.quiz)
 
+        // grab the parts of our layout we need to modify
         mPrompt = findViewById(R.id.question)
         mAnswers.add(findViewById(R.id.answer0))
         mAnswers.add(findViewById(R.id.answer1))
         mAnswers.add(findViewById(R.id.answer2))
         mAnswers.add(findViewById(R.id.answer3))
         mNext = findViewById(R.id.nextButton)
+        mHint = findViewById(R.id.hintButton)
 
+        // set up quiz
         val quizIndex = this.intent!!.extras!!.getInt(QuizActivity.Intent.EXTRA_QUIZ_INDEX)
 
         mQuiz = QuizSelection.Data.Quizzes[quizIndex]
@@ -50,9 +56,13 @@ class QuizActivity : AppCompatActivity() {
 
         setQuestion()
 
+        // add event listeners to answer buttons
         for (answer in mAnswers) {
             setAnswerListener(answer)
         }
+
+        // add functionality to next button
+        setNextListener()
     }
 
     private fun setQuestion() {
@@ -60,6 +70,7 @@ class QuizActivity : AppCompatActivity() {
 
         val answers = mQuestion!!.getAnswers()
 
+        // update answer buttons with current options
         for (i in answers.indices) {
             if (mQuestion!!.mType == "text") {
                 mAnswers[i].text = answers[i]
@@ -73,6 +84,26 @@ class QuizActivity : AppCompatActivity() {
                 }
             }
         }
+
+        // determine a random wrong answer to remove for hint
+        var wrongAnswer: Button? = null
+
+        for (answer in mAnswers.shuffled()) {
+            answer.visibility = View.VISIBLE
+
+            if (!mQuestion!!.checkAnswer(answer.text.toString())) {
+                wrongAnswer = answer
+                break
+            }
+        }
+
+        // remove incorrect option and make hint button disappear
+        mHint!!.setOnClickListener {
+            wrongAnswer?.visibility = View.GONE
+            mHint!!.visibility = View.GONE
+
+            mHint!!.setOnClickListener(null)
+        }
     }
 
     private fun setAnswerListener(answer: Button) {
@@ -85,30 +116,35 @@ class QuizActivity : AppCompatActivity() {
                 clearListener(button)
             }
 
-            val result = mQuestion!!.checkAnswer(answer.text.toString())
+            val result = mQuiz!!.submitAnswer(answer.text.toString())
 
             Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()
-            /*
-            TODO: Create answer system
+            // TODO: Add sound response to answer
 
-            This should go as follows:
-            - grey out other answers (done)
-            - check answer (currently the answer is always false)
-            - display feedback via toast
-            - display next question button
-             */
+            if (mQuiz!!.onLastQuestion()) {
+                mNext!!.setText(R.string.submit_button)
+            }
+
+            mHint!!.visibility = View.GONE
+            mNext!!.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setNextListener() {
+        mNext!!.setOnClickListener {
+            mNext!!.visibility = View.GONE
+
+            if (mQuiz!!.onLastQuestion()) {
+                // TODO: Submit Quiz
+                Log.d("QuizActivity", "in conditional")
+            } else {
+                mQuestion = mQuiz!!.nextQuestion()
+                setQuestion()
+            }
         }
     }
 
     private fun clearListener(button: Button) {
         button.setOnClickListener(null)
     }
-
-    /*
-    function adopted from:
-        https://stackoverflow.com/questions/36826004/kotlin-for-android-toast
-    */
-    fun Context.toast(message: CharSequence) =
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-
 }
