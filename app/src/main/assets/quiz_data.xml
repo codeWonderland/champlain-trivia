@@ -37,12 +37,132 @@
                 <answer correct="false">Champlain Business College </answer>
             </answers>
         </question>
+        <question type="text">
+            <prompt>What was the original name for Champlain College?</prompt>
+            <answers>
+                <answer correct="true">Burlington Business College</answer>
+                <answer correct="false">Champlain University</answer>
+                <answer correct="false">Burlington College</answer>
+                <answer correct="false">Champlain Business College </answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>What was the original name for Champlain College?</prompt>
+            <answers>
+                <answer correct="true">Burlington Business College</answer>
+                <answer correct="false">Champlain University</answer>
+                <answer correct="false">Burlington College</answer>
+                <answer correct="false">Champlain Business College </answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>What was the original name for Champlain College?</prompt>
+            <answers>
+                <answer correct="true">Burlington Business College</answer>
+                <answer correct="false">Champlain University</answer>
+                <answer correct="false">Burlington College</answer>
+                <answer correct="false">Champlain Business College </answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>What was the original name for Champlain College?</prompt>
+            <answers>
+                <answer correct="true">Burlington Business College</answer>
+                <answer correct="false">Champlain University</answer>
+                <answer correct="false">Burlington College</answer>
+                <answer correct="false">Champlain Business College </answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>What was the original name for Champlain College?</prompt>
+            <answers>
+                <answer correct="true">Burlington Business College</answer>
+                <answer correct="false">Champlain University</answer>
+                <answer correct="false">Burlington College</answer>
+                <answer correct="false">Champlain Business College </answer>
+            </answers>
+        </question>
     </quiz>
     <quiz name="Faculty">
         <question type="img">
             <prompt>Who teaches Mobile Dev?</prompt>
             <answers>
                 <answer correct="true">kopec</answer>
+                <answer correct="false">kopec</answer>
+                <answer correct="false">kopec</answer>
+                <answer correct="false">kopec</answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>What was the original name for Champlain College?</prompt>
+            <answers>
+                <answer correct="true">Burlington Business College</answer>
+                <answer correct="false">Champlain University</answer>
+                <answer correct="false">Burlington College</answer>
+                <answer correct="false">Champlain Business College </answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>What was the original name for Champlain College?</prompt>
+            <answers>
+                <answer correct="true">Burlington Business College</answer>
+                <answer correct="false">Champlain University</answer>
+                <answer correct="false">Burlington College</answer>
+                <answer correct="false">Champlain Business College </answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>What was the original name for Champlain College?</prompt>
+            <answers>
+                <answer correct="true">Burlington Business College</answer>
+                <answer correct="false">Champlain University</answer>
+                <answer correct="false">Burlington College</answer>
+                <answer correct="false">Champlain Business College </answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>What was the original name for Champlain College?</prompt>
+            <answers>
+                <answer correct="true">Burlington Business College</answer>
+                <answer correct="false">Champlain University</answer>
+                <answer correct="false">Burlington College</answer>
+                <answer correct="false">Champlain Business College </answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>What was the original name for Champlain College?</prompt>
+            <answers>
+                <answer correct="true">Burlington Business College</answer>
+                <answer correct="false">Champlain University</answer>
+                <answer correct="false">Burlington College</answer>
+                <answer correct="false">Champlain Business College </answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>What was the original name for Champlain College?</prompt>
+            <answers>
+                <answer correct="true">Burlington Business College</answer>
+                <answer correct="false">Champlain University</answer>
+                <answer correct="false">Burlington College</answer>
+                <answer correct="false">Champlain Business College </answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>What was the original name for Champlain College?</prompt>
+            <answers>
+                <answer correct="true">Burlington Business College</answer>
+                <answer correct="false">Champlain University</answer>
+                <answer correct="false">Burlington College</answer>
+                <answer correct="false">Champlain Business College </answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>What was the original name for Champlain College?</prompt>
+            <answers>
+                <answer correct="true">Burlington Business College</answer>
+                <answer correct="false">Champlain University</answer>
+                <answer correct="false">Burlington College</answer>
+                <answer correct="false">Champlain Business College </answer>
             </answers>
         </question>
         <question type="text">
@@ -56,6 +176,87 @@
         </question>
     </quiz>
     <quiz name="Buildings">
+        <question type="text">
+            <prompt>Where is admissions?</prompt>
+            <answers>
+                <answer correct="false">West Hall</answer>
+                <answer correct="false">Lakeside</answer>
+                <answer correct="true">Perry Hall</answer>
+                <answer correct="false">CCM</answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>Where is admissions?</prompt>
+            <answers>
+                <answer correct="false">West Hall</answer>
+                <answer correct="false">Lakeside</answer>
+                <answer correct="true">Perry Hall</answer>
+                <answer correct="false">CCM</answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>Where is admissions?</prompt>
+            <answers>
+                <answer correct="false">West Hall</answer>
+                <answer correct="false">Lakeside</answer>
+                <answer correct="true">Perry Hall</answer>
+                <answer correct="false">CCM</answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>Where is admissions?</prompt>
+            <answers>
+                <answer correct="false">West Hall</answer>
+                <answer correct="false">Lakeside</answer>
+                <answer correct="true">Perry Hall</answer>
+                <answer correct="false">CCM</answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>Where is admissions?</prompt>
+            <answers>
+                <answer correct="false">West Hall</answer>
+                <answer correct="false">Lakeside</answer>
+                <answer correct="true">Perry Hall</answer>
+                <answer correct="false">CCM</answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>Where is admissions?</prompt>
+            <answers>
+                <answer correct="false">West Hall</answer>
+                <answer correct="false">Lakeside</answer>
+                <answer correct="true">Perry Hall</answer>
+                <answer correct="false">CCM</answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>Where is admissions?</prompt>
+            <answers>
+                <answer correct="false">West Hall</answer>
+                <answer correct="false">Lakeside</answer>
+                <answer correct="true">Perry Hall</answer>
+                <answer correct="false">CCM</answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>Where is admissions?</prompt>
+            <answers>
+                <answer correct="false">West Hall</answer>
+                <answer correct="false">Lakeside</answer>
+                <answer correct="true">Perry Hall</answer>
+                <answer correct="false">CCM</answer>
+            </answers>
+        </question>
+        <question type="text">
+            <prompt>Where is admissions?</prompt>
+            <answers>
+                <answer correct="false">West Hall</answer>
+                <answer correct="false">Lakeside</answer>
+                <answer correct="true">Perry Hall</answer>
+                <answer correct="false">CCM</answer>
+            </answers>
+        </question>
         <question type="text">
             <prompt>Where is admissions?</prompt>
             <answers>
