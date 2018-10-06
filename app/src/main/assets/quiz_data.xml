@@ -37,6 +37,14 @@
                 <answer correct="false">Champlain Business College </answer>
             </answers>
         </question>
+    </quiz>
+    <quiz name="Faculty">
+        <question type="img">
+            <prompt>Who teaches Mobile Dev?</prompt>
+            <answers>
+                <answer correct="true">kopec</answer>
+            </answers>
+        </question>
         <question type="text">
             <prompt>What was the original name for Champlain College?</prompt>
             <answers>
@@ -44,14 +52,6 @@
                 <answer correct="false">Champlain University</answer>
                 <answer correct="false">Burlington College</answer>
                 <answer correct="false">Champlain Business College </answer>
-            </answers>
-        </question>
-    </quiz>
-    <quiz name="Faculty">
-        <question type="img">
-            <prompt>Who teaches Mobile Dev?</prompt>
-            <answers>
-                <answer correct="false">R.drawable.kopec</answer>
             </answers>
         </question>
     </quiz>

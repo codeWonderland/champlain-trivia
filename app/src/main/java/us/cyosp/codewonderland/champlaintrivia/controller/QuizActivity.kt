@@ -95,15 +95,16 @@ class QuizActivity : AppCompatActivity() {
         // update answer buttons with current options
         for (i in answers.indices) {
             if (mQuestion!!.mType == "text") {
+                mAnswers[i].setBackgroundColor(Color.parseColor("#236192"))
                 mAnswers[i].text = answers[i]
             } else {
-                try {  // TODO: Test this
-                    mAnswers[i].setBackgroundResource(
-                            resources.getIdentifier(answers[i], "String", packageName)
-                    )
-                } catch (e: Exception) {
+                try {
+                    val id = resources.getIdentifier(answers[i], "drawable", packageName)
 
-                }
+                    mAnswers[i].setBackgroundResource(id)
+                    mAnswers[i].text = ""
+
+                } catch (e: Exception) { }
             }
         }
 
