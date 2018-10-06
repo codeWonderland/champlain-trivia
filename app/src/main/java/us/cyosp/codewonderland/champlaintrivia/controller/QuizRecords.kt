@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import org.json.JSONException
@@ -28,23 +27,31 @@ class QuizRecords : AppCompatActivity() {
         const val EXTRA_NEW_PERSON: String =
                 "us.cyosp.codewonderland.champlaintrivia.new_person"
 
+        const val EXTRA_QUIZ_NAME: String =
+                "us.cyosp.codewonderland.champlaintrivia.quiz_name"
+
         fun newIntent(packageContext: Context): android.content.Intent {
             val intent = Intent(packageContext, QuizRecords::class.java)
             intent.putExtra(QuizRecords.EXTRA_NEW_PERSON, false)
             return intent
         }
 
-        fun newIntent(packageContext: Context, score: Score): android.content.Intent {
+        fun newIntent(packageContext: Context,
+                      score: Score): android.content.Intent {
             val intent = Intent(packageContext, QuizRecords::class.java)
+
             intent.putExtra(QuizRecords.EXTRA_NEW_PERSON, true)
             intent.putExtra(QuizRecords.EXTRA_USERNAME, score.username)
             intent.putExtra(QuizRecords.EXTRA_SCORE, score.score)
+            intent.putExtra(QuizRecords.EXTRA_QUIZ_NAME, score.cat)
+
             return intent
         }
     }
 
     private val mScores = arrayListOf<Score>()
     private val mRecordsFile = "quiz_results.json"
+    private var mQuizName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,9 +69,10 @@ class QuizRecords : AppCompatActivity() {
         if (newPerson) {
             val username = this.intent!!.extras!!.getString(QuizRecords.EXTRA_USERNAME)
             val score = this.intent!!.extras!!.getInt(QuizRecords.EXTRA_SCORE)
+            mQuizName = this.intent!!.extras!!.getString(QuizRecords.EXTRA_QUIZ_NAME)
 
-            if (username != null) {
-                mScores.add(Score(username, score))
+            if (username != null && mQuizName != null) {
+                mScores.add(Score(username, score, mQuizName!!))
 
                 saveScores()
 
@@ -82,20 +90,22 @@ class QuizRecords : AppCompatActivity() {
     }
 
     private fun displayScores() {
-        val sortedScores = mScores.sortedByDescending { it.score }
-        val topScores = sortedScores.take(5)
+        val scores = mScores.asSequence()
+                .filter { mQuizName == null || it.cat == mQuizName}
+                .sortedByDescending { it.score }.toList()
+                .take(5)
 
-        findViewById<TextView>(R.id.username1).text = topScores[0].username
-        findViewById<TextView>(R.id.username2).text = topScores[1].username
-        findViewById<TextView>(R.id.username3).text = topScores[2].username
-        findViewById<TextView>(R.id.username4).text = topScores[3].username
-        findViewById<TextView>(R.id.username5).text = topScores[4].username
+        findViewById<TextView>(R.id.username1).text = scores[0].username
+        findViewById<TextView>(R.id.username2).text = scores[1].username
+        findViewById<TextView>(R.id.username3).text = scores[2].username
+        findViewById<TextView>(R.id.username4).text = scores[3].username
+        findViewById<TextView>(R.id.username5).text = scores[4].username
 
-        findViewById<TextView>(R.id.score1).text = topScores[0].score.toString()
-        findViewById<TextView>(R.id.score2).text = topScores[1].score.toString()
-        findViewById<TextView>(R.id.score3).text = topScores[2].score.toString()
-        findViewById<TextView>(R.id.score4).text = topScores[3].score.toString()
-        findViewById<TextView>(R.id.score5).text = topScores[4].score.toString()
+        findViewById<TextView>(R.id.score1).text = scores[0].score.toString()
+        findViewById<TextView>(R.id.score2).text = scores[1].score.toString()
+        findViewById<TextView>(R.id.score3).text = scores[2].score.toString()
+        findViewById<TextView>(R.id.score4).text = scores[3].score.toString()
+        findViewById<TextView>(R.id.score5).text = scores[4].score.toString()
     }
 
     private fun saveScores() {
@@ -132,7 +142,8 @@ class QuizRecords : AppCompatActivity() {
                             // cast values to Score
                             Score(
                                     result.getString("name"),
-                                    result.getInt("score")
+                                    result.getInt("score"),
+                                    result.getString("cat")
                             )
                     )
                 }

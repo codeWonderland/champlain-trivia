@@ -1,24 +1,80 @@
 {
-  "results": [
+  "results" :
+  [
     {
       "name" : "Judy Wind",
-      "score" : 7
+      "score" : 8,
+      "cat" : "Buildings"
     },
     {
       "name" : "Arnesto Rivan",
-      "score" : 5
+      "score" : 4,
+      "cat" : "Buildings"
     },
     {
       "name" : "Lillith Jones",
-      "score" : 4
+      "score" : 9,
+      "cat" : "Buildings"
     },
     {
       "name" : "Ashton Ortiz",
-      "score" : 9
+      "score" : 1,
+      "cat" : "Buildings"
     },
     {
       "name" : "Charlie Hemmenway",
-      "score" : 10
+      "score" : 2,
+      "cat" : "Buildings"
+    },
+    {
+      "name" : "Judy Wind",
+      "score" : 7,
+      "cat" : "History"
+    },
+    {
+      "name" : "Arnesto Rivan",
+      "score" : 6,
+      "cat" : "History"
+    },
+    {
+      "name" : "Lillith Jones",
+      "score" : 3,
+      "cat" : "History"
+    },
+    {
+      "name" : "Ashton Ortiz",
+      "score" : 6,
+      "cat" : "History"
+    },
+    {
+      "name" : "Charlie Hemmenway",
+      "score" : 10,
+      "cat" : "History"
+    },
+    {
+      "name" : "Judy Wind",
+      "score" : 4,
+      "cat" : "Faculty"
+    },
+    {
+      "name" : "Arnesto Rivan",
+      "score" : 8,
+      "cat" : "Faculty"
+    },
+    {
+      "name" : "Lillith Jones",
+      "score" : 5,
+      "cat" : "Faculty"
+    },
+    {
+      "name" : "Ashton Ortiz",
+      "score" : 9,
+      "cat" : "Faculty"
+    },
+    {
+      "name" : "Charlie Hemmenway",
+      "score" : 5,
+      "cat" : "Faculty"
     }
   ]
 }

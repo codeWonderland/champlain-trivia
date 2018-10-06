@@ -173,8 +173,7 @@ class QuizActivity : AppCompatActivity() {
                 results activity with intent
                  */
 
-                val intent = QuizResults.newIntent(this, mQuiz!!.getScore())
-                intent.putExtra(QuizActivity.EXTRA_QUIZ_INDEX, mQuizIndex)
+                val intent = QuizResults.newIntent(this, mQuiz!!.getScore(), mQuizIndex)
                 startActivityForResult(intent, REQUEST_CODE_RESULTS)
 
             } else {
