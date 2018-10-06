@@ -26,6 +26,7 @@
         </activity>
         <activity android:name=".controller.QuizActivity" />
         <activity android:name=".controller.QuizResults" />
+        <activity android:name=".controller.QuizRecords" />
 
     </application>
 

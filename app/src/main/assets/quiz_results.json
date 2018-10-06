@@ -1,56 +1,18 @@
-{
-  "History" : [
-    {
-      "name" : "Judy Wind",
-      "score" : 7
-    },
-    {
-      "name" : "Arnesto Rivan",
-      "score" : 5
-    },
-    {
-      "name" : "Lillith Jones",
-      "score" : 4
-    },
-    {
-      "name" : "Ashton Ortiz",
-      "score": 9
-    }
-  ],
-  "Faculty" : [
-    {
-      "name" : "Arnesto Rivan",
-      "score" : 5
-    },
-    {
-      "name" : "Lillith Jones",
-      "score" : 4
-    },
-    {
-      "name" : "Ashton Ortiz",
-      "score": 9
-    },
-    {
-      "name" : "Judy Wind",
-      "score" : 7
-    }
-  ],
-  "Buildings" : [
-    {
-      "name" : "Lillith Jones",
-      "score" : 4
-    },
-    {
-      "name" : "Arnesto Rivan",
-      "score" : 5
-    },
-    {
-      "name" : "Judy Wind",
-      "score" : 7
-    },
-    {
-      "name" : "Ashton Ortiz",
-      "score": 9
-    }
-  ]
-}
+[
+  {
+    "name" : "Judy Wind",
+    "score" : 7
+  },
+  {
+    "name" : "Arnesto Rivan",
+    "score" : 5
+  },
+  {
+    "name" : "Lillith Jones",
+    "score" : 4
+  },
+  {
+    "name" : "Ashton Ortiz",
+    "score": 9
+  }
+]

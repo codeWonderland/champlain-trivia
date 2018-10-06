@@ -65,6 +65,17 @@ class QuizActivity : AppCompatActivity() {
         setNextListener()
     }
 
+    override fun onActivityResult(requestCode: Int,
+                                  resultCode: Int, data: android.content.Intent?) {
+        if (resultCode != Activity.RESULT_OK) {
+            return
+        }
+
+        if (requestCode == this.REQUEST_CODE_RESULTS) {
+            setResult(Activity.RESULT_OK)
+        }
+    }
+
     private fun setQuestion() {
         mPrompt!!.text = mQuestion!!.getPrompt()
 
@@ -176,14 +187,4 @@ class QuizActivity : AppCompatActivity() {
         button.setOnClickListener(null)
     }
 
-    @Override
-    private fun onActivityResult(requestCode: Int, resultCode: Int) {
-        if (resultCode != Activity.RESULT_OK) {
-            return
-        }
-
-        if (requestCode == this.REQUEST_CODE_RESULTS) {
-            setResult(Activity.RESULT_OK)
-        }
-    }
 }
