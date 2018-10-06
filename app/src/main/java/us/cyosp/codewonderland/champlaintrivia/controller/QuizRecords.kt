@@ -5,13 +5,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import org.json.JSONException
 import org.json.JSONObject
 import us.cyosp.codewonderland.champlaintrivia.R
 import us.cyosp.codewonderland.champlaintrivia.model.Score
-import java.io.IOException
+import java.io.File
+import java.lang.Exception
 import java.nio.charset.Charset
 
 class QuizRecords : AppCompatActivity() {
@@ -42,6 +44,7 @@ class QuizRecords : AppCompatActivity() {
     }
 
     private val mScores = arrayListOf<Score>()
+    private val mRecordsFile = "quiz_results.json"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +55,9 @@ class QuizRecords : AppCompatActivity() {
 
         val homeButton: Button = findViewById(R.id.home_button)
 
-        initScores()
+        val results = getResults()
+
+        initScores(results)
 
         if (newPerson) {
             val username = this.intent!!.extras!!.getString(QuizRecords.Intent.EXTRA_USERNAME)
@@ -94,12 +99,18 @@ class QuizRecords : AppCompatActivity() {
     }
 
     private fun saveScores() {
-        // TODO: Implement this
+        val scores = mScores.map {
+            score -> score.toString()
+        }
+
+        val output = "{ \"results\" : $scores }"
+
+        this.openFileOutput(mRecordsFile, Context.MODE_PRIVATE).use {
+            it.write(output.toByteArray())
+        }
     }
 
-    private fun initScores() {
-
-        val results = openResults()
+    private fun initScores(results: String?) {
 
         if (results != null) {
             try {
@@ -111,10 +122,14 @@ class QuizRecords : AppCompatActivity() {
                 val resultsObj = JSONObject(results)
                 val resultsArr = resultsObj.getJSONArray("results")
 
+                // Iterate over every result object
                 for (i in 0..resultsArr.length()) {
+                    // Grab the current result
                     val result: JSONObject = resultsArr.getJSONObject(i)
 
+                    // Add the result to mScores
                     mScores.add(
+                            // cast values to Score
                             Score(
                                     result.getString("name"),
                                     result.getInt("score")
@@ -124,20 +139,27 @@ class QuizRecords : AppCompatActivity() {
 
             } catch (e: JSONException) {
                 e.printStackTrace()
-
             }
         }
     }
 
-    private fun openResults(): String? {
+    private fun getResults(): String? {
         /* I MODIFIED THIS CODE
         Author: GrIsHu
         Source: https://stackoverflow.com/questions/19945411/android-java-how-can-i-parse-a-local-json-file-from-assets-folder-into-a-listvi
          */
         val json: String?
 
+        val file = File(this.filesDir, mRecordsFile)
+
+        val inputStream = if (file.exists()) {
+            this.openFileInput(mRecordsFile)
+
+        } else {
+            assets.open(mRecordsFile)
+        }
+
         try {
-            val inputStream = assets.open("quiz_results.json")
             val size = inputStream.available()
             val buffer = ByteArray(size)
 
@@ -145,8 +167,8 @@ class QuizRecords : AppCompatActivity() {
             inputStream.close()
             json = String(buffer, Charset.defaultCharset())
 
-        } catch (ex: IOException) {
-            ex.printStackTrace()
+        } catch (e: Exception) {
+            e.printStackTrace()
             return null
         }
 
