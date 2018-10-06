@@ -73,6 +73,7 @@ class QuizActivity : AppCompatActivity() {
 
         if (requestCode == this.REQUEST_CODE_RESULTS) {
             setResult(Activity.RESULT_OK)
+            this.finish()
         }
     }
 

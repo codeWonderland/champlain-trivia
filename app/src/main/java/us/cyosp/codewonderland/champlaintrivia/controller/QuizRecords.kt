@@ -1,10 +1,11 @@
 package us.cyosp.codewonderland.champlaintrivia.controller
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Button
 import android.widget.TextView
 import org.json.JSONException
 import org.json.JSONObject
@@ -40,18 +41,20 @@ class QuizRecords : AppCompatActivity() {
         }
     }
 
-    private var mNewPerson = false
     private val mScores = arrayListOf<Score>()
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.quiz_records)
 
-        mNewPerson = this.intent!!.extras!!.getBoolean(QuizRecords.Intent.EXTRA_NEW_PERSON)
+        val newPerson: Boolean =
+                this.intent!!.extras!!.getBoolean(QuizRecords.Intent.EXTRA_NEW_PERSON)
+
+        val homeButton: Button = findViewById(R.id.home_button)
 
         initScores()
 
-        if (mNewPerson) {
+        if (newPerson) {
             val username = this.intent!!.extras!!.getString(QuizRecords.Intent.EXTRA_USERNAME)
             val score = this.intent!!.extras!!.getInt(QuizRecords.Intent.EXTRA_SCORE)
 
@@ -59,10 +62,18 @@ class QuizRecords : AppCompatActivity() {
                 mScores.add(Score(username, score))
 
                 saveScores()
+
             }
+
         }
 
         displayScores()
+
+        homeButton.setOnClickListener {
+            setResult(Activity.RESULT_OK)
+            this.finish()
+        }
+
     }
 
     private fun displayScores() {
@@ -83,7 +94,7 @@ class QuizRecords : AppCompatActivity() {
     }
 
     private fun saveScores() {
-
+        // TODO: Implement this
     }
 
     private fun initScores() {

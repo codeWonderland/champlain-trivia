@@ -24,6 +24,13 @@ class QuizSelection : AppCompatActivity() {
         setContentView(R.layout.quiz_selection)
 
         parseXML()
+
+        val recordsButton: Button = findViewById(R.id.records_button)
+
+        recordsButton.setOnClickListener {
+            val intent = QuizRecords.Intent.newIntent(this)
+            startActivity(intent)
+        }
     }
 
     private fun parseXML() {

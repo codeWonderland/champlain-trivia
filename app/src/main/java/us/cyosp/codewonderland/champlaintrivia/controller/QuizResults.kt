@@ -50,8 +50,20 @@ class QuizResults : AppCompatActivity() {
                 val intent: android.content.Intent =
                         QuizRecords.Intent.newIntent(this, Score(username, mScore))
 
-                startActivity(intent)
+                startActivityForResult(intent, REQUEST_CODE_RECORDS)
             }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int,
+                                  resultCode: Int, intent: android.content.Intent?) {
+        if (resultCode != Activity.RESULT_OK) {
+            return
+        }
+
+        if (requestCode == this.REQUEST_CODE_RECORDS) {
+                setResult(Activity.RESULT_OK)
+                this.finish()
         }
     }
 }

@@ -59,4 +59,10 @@
         android:textSize="28sp"
         android:text="@string/faculty" />
 
+    <Button
+        android:id="@+id/records_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/records" />
+
 </LinearLayout>

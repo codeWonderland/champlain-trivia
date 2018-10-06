@@ -12,4 +12,14 @@
     <string name="score_prompt">SCORE</string>
     <string name="get_name">give us a name for the scoreboard</string>
     <string name="top_scores">Top Scores</string>
+    <string name="records">RECORDS</string>
+    <string name="home">HOME</string>
+    <string name="num_questions">10</string>
+    <string name="name_score_delimiter">-</string>
+    <string name="username">username</string>
+    <string name="q5_prompt">5.</string>
+    <string name="q4_prompt">4.</string>
+    <string name="q3_prompt">3.</string>
+    <string name="q2_prompt">2.</string>
+    <string name="q1_prompt">1.</string>
 </resources>
