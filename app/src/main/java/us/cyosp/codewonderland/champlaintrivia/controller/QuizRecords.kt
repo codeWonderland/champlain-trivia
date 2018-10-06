@@ -18,7 +18,7 @@ import java.nio.charset.Charset
 
 class QuizRecords : AppCompatActivity() {
 
-    object Intent {
+    companion object {
         const val EXTRA_USERNAME: String =
                 "us.cyosp.codewonderland.champlaintrivia.username"
 
@@ -30,15 +30,15 @@ class QuizRecords : AppCompatActivity() {
 
         fun newIntent(packageContext: Context): android.content.Intent {
             val intent = Intent(packageContext, QuizRecords::class.java)
-            intent.putExtra(QuizRecords.Intent.EXTRA_NEW_PERSON, false)
+            intent.putExtra(QuizRecords.EXTRA_NEW_PERSON, false)
             return intent
         }
 
         fun newIntent(packageContext: Context, score: Score): android.content.Intent {
             val intent = Intent(packageContext, QuizRecords::class.java)
-            intent.putExtra(QuizRecords.Intent.EXTRA_NEW_PERSON, true)
-            intent.putExtra(QuizRecords.Intent.EXTRA_USERNAME, score.username)
-            intent.putExtra(QuizRecords.Intent.EXTRA_SCORE, score.score)
+            intent.putExtra(QuizRecords.EXTRA_NEW_PERSON, true)
+            intent.putExtra(QuizRecords.EXTRA_USERNAME, score.username)
+            intent.putExtra(QuizRecords.EXTRA_SCORE, score.score)
             return intent
         }
     }
@@ -51,7 +51,7 @@ class QuizRecords : AppCompatActivity() {
         setContentView(R.layout.quiz_records)
 
         val newPerson: Boolean =
-                this.intent!!.extras!!.getBoolean(QuizRecords.Intent.EXTRA_NEW_PERSON)
+                this.intent!!.extras!!.getBoolean(QuizRecords.EXTRA_NEW_PERSON)
 
         val homeButton: Button = findViewById(R.id.home_button)
 
@@ -60,8 +60,8 @@ class QuizRecords : AppCompatActivity() {
         initScores(results)
 
         if (newPerson) {
-            val username = this.intent!!.extras!!.getString(QuizRecords.Intent.EXTRA_USERNAME)
-            val score = this.intent!!.extras!!.getInt(QuizRecords.Intent.EXTRA_SCORE)
+            val username = this.intent!!.extras!!.getString(QuizRecords.EXTRA_USERNAME)
+            val score = this.intent!!.extras!!.getInt(QuizRecords.EXTRA_SCORE)
 
             if (username != null) {
                 mScores.add(Score(username, score))

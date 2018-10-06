@@ -15,8 +15,8 @@ import java.io.IOException
 
 class QuizSelection : AppCompatActivity() {
 
-    object Data {
-        val Quizzes = ArrayList<Quiz>()
+    companion object {
+        val sQuizzes = ArrayList<Quiz>()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ class QuizSelection : AppCompatActivity() {
         val recordsButton: Button = findViewById(R.id.records_button)
 
         recordsButton.setOnClickListener {
-            val intent = QuizRecords.Intent.newIntent(this)
+            val intent = QuizRecords.newIntent(this)
             startActivity(intent)
         }
     }
@@ -78,7 +78,7 @@ class QuizSelection : AppCompatActivity() {
                                 quiz.addQuestion(question)
                             }
 
-                            QuizSelection.Data.Quizzes.add(quiz)
+                            QuizSelection.sQuizzes.add(quiz)
                             question = null
 
                         }
@@ -113,7 +113,7 @@ class QuizSelection : AppCompatActivity() {
         }
 
         quiz!!.addQuestion(question!!)
-        QuizSelection.Data.Quizzes.add(quiz)
+        QuizSelection.sQuizzes.add(quiz)
 
 
         displayQuizzes()
@@ -124,9 +124,9 @@ class QuizSelection : AppCompatActivity() {
         val quiz1: Button = findViewById(R.id.quiz1)
         val quiz2: Button = findViewById(R.id.quiz2)
 
-        quiz0.text = QuizSelection.Data.Quizzes[0].mName
-        quiz1.text = QuizSelection.Data.Quizzes[1].mName
-        quiz2.text = QuizSelection.Data.Quizzes[2].mName
+        quiz0.text = QuizSelection.sQuizzes[0].mName
+        quiz1.text = QuizSelection.sQuizzes[1].mName
+        quiz2.text = QuizSelection.sQuizzes[2].mName
 
         attachQuiz(quiz0, 0)
         attachQuiz(quiz1, 1)
@@ -135,7 +135,7 @@ class QuizSelection : AppCompatActivity() {
 
     private fun attachQuiz(button: Button, quizIndex: Int) {
         button.setOnClickListener {
-            val intent = QuizActivity.Intent.newIntent(this, quizIndex)
+            val intent = QuizActivity.newIntent(this, quizIndex)
             startActivity(intent)
         }
     }

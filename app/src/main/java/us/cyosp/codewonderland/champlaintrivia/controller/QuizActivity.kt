@@ -25,6 +25,7 @@ class QuizActivity : AppCompatActivity() {
     private val TAG: String = "QuizActivity"
     private val REQUEST_CODE_RESULTS = 0
 
+    private var mQuizIndex = -1
     private var mQuiz: Quiz? = null
     private var mPrompt: TextView? = null
     private var mAnswers = ArrayList<Button>()
@@ -33,8 +34,8 @@ class QuizActivity : AppCompatActivity() {
     private var mQuestion: Question? = null
     private var mBeatBox: BeatBox? = null
 
-    object Intent {
-        const val EXTRA_QUIZ_INDEX: String =
+    companion object {
+        const val EXTRA_QUIZ_INDEX =
                 "us.cyosp.codewonderland.champlaintrivia.quiz_data"
 
         fun newIntent(packageContext: Context, quizIndex: Int): android.content.Intent {
@@ -58,9 +59,9 @@ class QuizActivity : AppCompatActivity() {
         mHint = findViewById(R.id.hintButton)
 
         // set up quiz
-        val quizIndex = this.intent!!.extras!!.getInt(QuizActivity.Intent.EXTRA_QUIZ_INDEX)
+        mQuizIndex = this.intent!!.extras!!.getInt(QuizActivity.EXTRA_QUIZ_INDEX)
 
-        mQuiz = QuizSelection.Data.Quizzes[quizIndex]
+        mQuiz = QuizSelection.sQuizzes[mQuizIndex]
         mQuestion = mQuiz!!.getQuestion()
 
         setQuestion()
@@ -122,8 +123,11 @@ class QuizActivity : AppCompatActivity() {
             }
         }
 
-        // remove incorrect option and make hint button disappear
+        // make hint visible and setup listener
+        mHint!!.visibility = View.VISIBLE
         mHint!!.setOnClickListener {
+
+            // remove incorrect option and make hint button disappear
             wrongAnswer?.visibility = View.GONE
             mHint!!.visibility = View.GONE
 
@@ -169,7 +173,8 @@ class QuizActivity : AppCompatActivity() {
                 results activity with intent
                  */
 
-                val intent = QuizResults.Intent.newIntent(this, mQuiz!!.getScore())
+                val intent = QuizResults.newIntent(this, mQuiz!!.getScore())
+                intent.putExtra(QuizActivity.EXTRA_QUIZ_INDEX, mQuizIndex)
                 startActivityForResult(intent, REQUEST_CODE_RESULTS)
 
             } else {
@@ -195,11 +200,6 @@ class QuizActivity : AppCompatActivity() {
 
     private fun clearListener(button: Button) {
         button.setOnClickListener(null)
-    }
-
-    private fun initSounds() {
-
-
     }
 
     private fun playSound(correct: Boolean) {

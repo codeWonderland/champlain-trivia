@@ -20,7 +20,7 @@ class QuizResults : AppCompatActivity() {
     private var mUsername: EditText? = null
     private var mSubmit: Button? = null
 
-    object Intent {
+    companion object {
         const val EXTRA_QUIZ_RESULTS: String =
                 "us.cyosp.codewonderland.champlaintrivia.quiz_results"
 
@@ -35,7 +35,7 @@ class QuizResults : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.quiz_results)
 
-        mScore = this.intent!!.extras!!.getInt(QuizResults.Intent.EXTRA_QUIZ_RESULTS)
+        mScore = this.intent!!.extras!!.getInt(QuizResults.EXTRA_QUIZ_RESULTS)
 
         mScoreView = findViewById(R.id.score)
         mUsername = findViewById(R.id.username)
@@ -48,7 +48,7 @@ class QuizResults : AppCompatActivity() {
 
             if (username != "") {
                 val intent: android.content.Intent =
-                        QuizRecords.Intent.newIntent(this, Score(username, mScore))
+                        QuizRecords.newIntent(this, Score(username, mScore))
 
                 startActivityForResult(intent, REQUEST_CODE_RECORDS)
             }
