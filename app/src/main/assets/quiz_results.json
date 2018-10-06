@@ -1,18 +1,20 @@
-[
-  {
-    "name" : "Judy Wind",
-    "score" : 7
-  },
-  {
-    "name" : "Arnesto Rivan",
-    "score" : 5
-  },
-  {
-    "name" : "Lillith Jones",
-    "score" : 4
-  },
-  {
-    "name" : "Ashton Ortiz",
-    "score": 9
-  }
-]
+{
+  "results": [
+    {
+      "name" : "Judy Wind",
+      "score" : 7
+    },
+    {
+      "name" : "Arnesto Rivan",
+      "score" : 5
+    },
+    {
+      "name" : "Lillith Jones",
+      "score" : 4
+    },
+    {
+      "name" : "Ashton Ortiz",
+      "score": 9
+    }
+  ]
+}

@@ -11,4 +11,5 @@
     <string name="hint">HINT</string>
     <string name="score_prompt">SCORE</string>
     <string name="get_name">give us a name for the scoreboard</string>
+    <string name="top_scores">Top Scores</string>
 </resources>

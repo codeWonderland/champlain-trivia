@@ -47,22 +47,11 @@ class QuizResults : AppCompatActivity() {
             val username = mUsername!!.text.toString()
 
             if (username != "") {
-                val intent =
+                val intent: android.content.Intent =
                         QuizRecords.Intent.newIntent(this, Score(username, mScore))
 
-                startActivityForResult(intent, REQUEST_CODE_RECORDS)
+                startActivity(intent)
             }
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int,
-                                  resultCode: Int, data: android.content.Intent?) {
-        if (resultCode != Activity.RESULT_OK) {
-            return
-        }
-
-        if (requestCode == this.REQUEST_CODE_RECORDS) {
-            setResult(Activity.RESULT_OK)
         }
     }
 }
