@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -15,12 +14,16 @@ import us.cyosp.codewonderland.champlaintrivia.R
 import us.cyosp.codewonderland.champlaintrivia.model.Question
 import us.cyosp.codewonderland.champlaintrivia.model.Quiz
 import java.lang.Exception
+import us.cyosp.codewonderland.champlaintrivia.util.BeatBox
+
 
 class QuizActivity : AppCompatActivity() {
 
+    // Modified version of class from chapter 21
+    private data class Sound(val mName: String, val mPath: String, var mSoundId: Int)
+
     private val TAG: String = "QuizActivity"
     private val REQUEST_CODE_RESULTS = 0
-
 
     private var mQuiz: Quiz? = null
     private var mPrompt: TextView? = null
@@ -28,6 +31,7 @@ class QuizActivity : AppCompatActivity() {
     private var mNext: Button? = null
     private var mHint: Button? = null
     private var mQuestion: Question? = null
+    private var mBeatBox: BeatBox? = null
 
     object Intent {
         const val EXTRA_QUIZ_INDEX: String =
@@ -63,10 +67,15 @@ class QuizActivity : AppCompatActivity() {
 
         // add functionality to next button
         setNextListener()
+
+        // add sound functionality
+        mBeatBox = BeatBox(this)
+
     }
 
     override fun onActivityResult(requestCode: Int,
-                                  resultCode: Int, data: android.content.Intent?) {
+                                  resultCode: Int,
+                                  data: android.content.Intent?) {
         if (resultCode != Activity.RESULT_OK) {
             return
         }
@@ -135,7 +144,7 @@ class QuizActivity : AppCompatActivity() {
             val result = mQuiz!!.submitAnswer(answer.text.toString())
 
             Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()
-            // TODO: Add sound response to answer
+            playSound(result)
 
             if (mQuiz!!.isLastQuestion()) {
                 mNext!!.setText(R.string.submit_button)
@@ -188,4 +197,23 @@ class QuizActivity : AppCompatActivity() {
         button.setOnClickListener(null)
     }
 
+    private fun initSounds() {
+
+
+    }
+
+    private fun playSound(correct: Boolean) {
+        val path = if (correct) {
+            "sounds/success.mp3"
+
+        } else {
+            "sounds/failure.mp3"
+        }
+
+        for (sound in mBeatBox!!.sounds) {
+            if (sound.assetPath == path) {
+                mBeatBox!!.play(sound)
+            }
+        }
+    }
 }
