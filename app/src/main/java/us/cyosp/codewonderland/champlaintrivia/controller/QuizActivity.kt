@@ -1,5 +1,6 @@
 package us.cyosp.codewonderland.champlaintrivia.controller
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -16,6 +17,10 @@ import us.cyosp.codewonderland.champlaintrivia.model.Quiz
 import java.lang.Exception
 
 class QuizActivity : AppCompatActivity() {
+
+    private val TAG: String = "QuizActivity"
+    private val REQUEST_CODE_RESULTS = 0
+
 
     private var mQuiz: Quiz? = null
     private var mPrompt: TextView? = null
@@ -120,7 +125,7 @@ class QuizActivity : AppCompatActivity() {
             Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()
             // TODO: Add sound response to answer
 
-            if (mQuiz!!.onLastQuestion()) {
+            if (mQuiz!!.isLastQuestion()) {
                 mNext!!.setText(R.string.submit_button)
             }
 
@@ -131,18 +136,37 @@ class QuizActivity : AppCompatActivity() {
 
     private fun setNextListener() {
         mNext!!.setOnClickListener {
+            /*
+            determine if we are on the last question
+            then do appropriate setup and scene change
+             */
             mNext!!.visibility = View.GONE
 
-            if (mQuiz!!.onLastQuestion()) {
-                // TODO: Submit Quiz
-                Log.d("QuizActivity", "in conditional")
+            if (mQuiz!!.isLastQuestion()) {
+                /*
+                create intent with score and start
+                results activity with intent
+                 */
+
+                val intent = QuizResults.Intent.newIntent(this, mQuiz!!.getScore())
+                startActivityForResult(intent, REQUEST_CODE_RESULTS)
+
             } else {
+                /*
+                if not the last question we do
+                some setup then reset the stage
+                */
                 mQuestion = mQuiz!!.nextQuestion()
 
                 for (answer in mAnswers) {
+                    /*
+                    return answer buttons to
+                    blue and make them visible
+                     */
                     answer.setBackgroundColor(Color.parseColor("#236192"))
                     answer.visibility = View.VISIBLE
                 }
+
                 setQuestion()
             }
         }
@@ -150,5 +174,16 @@ class QuizActivity : AppCompatActivity() {
 
     private fun clearListener(button: Button) {
         button.setOnClickListener(null)
+    }
+
+    @Override
+    private fun onActivityResult(requestCode: Int, resultCode: Int) {
+        if (resultCode != Activity.RESULT_OK) {
+            return
+        }
+
+        if (requestCode == this.REQUEST_CODE_RESULTS) {
+            setResult(Activity.RESULT_OK)
+        }
     }
 }

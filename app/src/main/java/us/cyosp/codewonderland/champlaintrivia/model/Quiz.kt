@@ -25,11 +25,15 @@ class Quiz(val mName: String) {
         return getQuestion()
     }
 
-    fun onLastQuestion() : Boolean {
+    fun isLastQuestion() : Boolean {
         return mCurrentQuestion == mQuestions.size - 1
     }
 
-    fun checkScore() : Int {
+    fun numQuestions() : Int {
+        return mQuestions.size
+    }
+
+    fun getScore() : Int {
         return mScore
     }
 

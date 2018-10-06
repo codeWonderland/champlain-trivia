@@ -9,4 +9,6 @@
     <string name="tmp_answer">answer</string>
     <string name="tmp_question">question</string>
     <string name="hint">HINT</string>
+    <string name="score_prompt">SCORE</string>
+    <string name="get_name">give us a name for the scoreboard</string>
 </resources>
