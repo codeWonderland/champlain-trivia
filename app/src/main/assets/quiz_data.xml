@@ -88,9 +88,9 @@
             <prompt>Who teaches Mobile Dev?</prompt>
             <answers>
                 <answer correct="true">kopec</answer>
-                <answer correct="false">kopec</answer>
-                <answer correct="false">kopec</answer>
-                <answer correct="false">kopec</answer>
+                <answer correct="false">wei</answer>
+                <answer correct="false">wei</answer>
+                <answer correct="false">wei</answer>
             </answers>
         </question>
         <question type="text">

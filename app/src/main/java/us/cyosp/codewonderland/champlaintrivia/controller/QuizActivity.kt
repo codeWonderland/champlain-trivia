@@ -87,6 +87,12 @@ class QuizActivity : AppCompatActivity() {
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+
+        mQuiz!!.reset()
+    }
+
     private fun setQuestion() {
         mPrompt!!.text = mQuestion!!.getPrompt()
 
@@ -96,12 +102,14 @@ class QuizActivity : AppCompatActivity() {
         for (i in answers.indices) {
             if (mQuestion!!.mType == "text") {
                 mAnswers[i].setBackgroundColor(Color.parseColor("#236192"))
+                mAnswers[i].tag = null
                 mAnswers[i].text = answers[i]
             } else {
                 try {
                     val id = resources.getIdentifier(answers[i], "drawable", packageName)
 
                     mAnswers[i].setBackgroundResource(id)
+                    mAnswers[i].tag = answers[i]
                     mAnswers[i].text = ""
 
                 } catch (e: Exception) { }
@@ -136,17 +144,24 @@ class QuizActivity : AppCompatActivity() {
         }
     }
 
-    private fun setAnswerListener(answer: Button) {
-        answer.setOnClickListener {
+    private fun setAnswerListener(answerButton: Button) {
+        answerButton.setOnClickListener {
             for (button in mAnswers) {
-                if (button.text != answer.text) {
+                if (button.text != answerButton.text) {
                     button.setBackgroundColor(Color.GRAY)
                 }
 
                 clearListener(button)
             }
 
-            val result = mQuiz!!.submitAnswer(answer.text.toString())
+            val answer = if (answerButton.text != "") {
+                answerButton.text.toString()
+            } else {
+                answerButton.tag.toString()
+            }
+
+            val result = mQuiz!!.submitAnswer(answer)
+
 
             Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()
             playSound(result)

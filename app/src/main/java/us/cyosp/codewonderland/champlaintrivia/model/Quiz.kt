@@ -29,15 +29,16 @@ class Quiz(val mName: String) {
         return mCurrentQuestion == mQuestions.size - 1
     }
 
-    fun numQuestions() : Int {
-        return mQuestions.size
-    }
-
     fun getScore() : Int {
         return mScore
     }
 
     fun getQuestion() : Question {
         return this.mQuestions[this.mCurrentQuestion]
+    }
+
+    fun reset() {
+        mScore = 0
+        mCurrentQuestion = 0
     }
 }

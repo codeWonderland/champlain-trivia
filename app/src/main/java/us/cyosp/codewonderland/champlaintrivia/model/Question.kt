@@ -26,10 +26,11 @@ class Question(val mType: String) {
         }
     }
 
-    fun checkAnswer(value: String): Boolean {
-        for (answer in mAnswers) {
-            if (answer.mValue == value) {
-                return answer.mCorrect
+    fun checkAnswer(answer: String): Boolean {
+
+        for (option in mAnswers) {
+            if (option.mValue == answer) {
+                return option.mCorrect
             }
         }
 
